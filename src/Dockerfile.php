@@ -27,7 +27,7 @@ class Dockerfile
     protected const BASE_IMAGES = [
         // architecture    => base image,
         self::ARCH_AMD64   => 'php',
-        self::ARCH_ARM64V8 => 'arm64v8/php',
+        self::ARCH_ARM64V8 => 'php',
     ];
 
     protected string $basePath;
