@@ -1,4 +1,4 @@
-FROM arm64v8/php:7.4-cli
+FROM arm64v8/php:7.2.34-cli
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV TERM            xterm-color
@@ -21,14 +21,12 @@ RUN \
     composer self-update 1.10.15                                                                 && \
     apt-get update              && \
     apt-get install -y             \
-        inotify-tools              \
         libssl-dev                 \
         supervisor                 \
         unzip                      \
         zlib1g-dev                 \
-        libpq-dev                  \
         --no-install-recommends && \
-    install-swoole.sh master && \
+    install-swoole.sh 4.5.5 && \
     mkdir -p /var/log/supervisor && \
     rm -rf /var/lib/apt/lists/* /usr/bin/qemu-*-static
 

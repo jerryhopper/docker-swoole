@@ -1,4 +1,4 @@
-FROM arm64v8/php:7.4-cli
+FROM php:7.3.22-cli
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV TERM            xterm-color
@@ -18,17 +18,15 @@ RUN \
         --retry-max-time   60 \
         http://getcomposer.org/installer | php -- --install-dir="/usr/bin" --filename=composer && \
     chmod +x "/usr/bin/composer"                                                               && \
-    composer self-update 1.10.15                                                                 && \
+    composer self-update 1.10.13                                                                 && \
     apt-get update              && \
     apt-get install -y             \
-        inotify-tools              \
         libssl-dev                 \
         supervisor                 \
         unzip                      \
         zlib1g-dev                 \
-        libpq-dev                  \
         --no-install-recommends && \
-    install-swoole.sh master && \
+    install-swoole.sh 4.4.21 && \
     mkdir -p /var/log/supervisor && \
     rm -rf /var/lib/apt/lists/* /usr/bin/qemu-*-static
 
